@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Make Viral Videos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0d0e21;
+            color: white;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+            background: #003566;
+            position: relative;
+        }
+
+        .navbar .brand {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 25px;
+            padding: 15px 30px;
+            background: #00509e;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #003566;
+            transform: scale(1.05);
+        }
+
+        .navbar div {
+            display: flex;
+        }
+
+        .navbar .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 25px;
+            z-index: 1000;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            transition: transform 0.3s;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to bottom, #003566, #00509e);
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #fff;
+            animation: zoomIn 1s ease-out;
+            letter-spacing: -1px;
+        }
+
+        .hero .cta-button {
+            padding: 20px 40px;
+            background-color: #ffcc00;
+            color: #0d0e21;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .hero .cta-button:hover {
+            background-color: #003566;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            background: linear-gradient(to bottom, #00509e, #0077b6);
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .channels {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #0077b6, #0096c7);
+        }
+
+        .channels h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            font-weight: bolder;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .channel-box {
+            background: #00509e;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bolder;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .channel-box:hover {
+            background-color: #0077b6;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .channel-box a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .channel-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .channel-box img:hover {
+            transform: scale(1.05);
+        }
+
+        .facts {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #00b4d8, #48cae4);
+        }
+
+        .facts h2 {
+            font-size: 50px;
+            margin-bottom: 40px;
+            font-weight: bolder;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .facts-grid {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .fact {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff;
+            min-width: 250px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact span {
+            font-size: 60px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .fact p {
+            font-size: 22px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .fact:hover {
+            background-color: #00509e;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonials {
+            background: #0d0e21;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 48px;
+            margin-bottom: 50px;
+            font-weight: bolder;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .testimonial-box {
+            background: #1e1e2d;
+            color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-box p {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #ddd;
+        }
+
+        .testimonial-box h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .testimonial-box .designation {
+            font-size: 18px;
+            color: #bbb;
+            margin-top: 10px;
+        }
+
+        .testimonial-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .join-team {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #00b4d8, #48cae4);
+        }
+
+        .join-team h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            font-weight: bolder;
+        }
+
+        .join-team button {
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: bolder;
+            color: #0d0e21;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .join-team button:hover {
+            background-color: #00509e;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #0d0e21;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer .footer-content p {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        footer .social-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: #00509e;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar div {
+                display: none;
+            }
+
+            .navbar .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 35px;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+
+            .navbar.active div {
+                display: block;
+                position: absolute;
+                top: 80px;
+                right: 20px;
+                background: #003566;
+                padding: 20px;
+                border-radius: 8px;
+                width: 100%;
+            }
+
+            .navbar.active .hamburger span:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .navbar.active .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar.active .hamburger span:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+
+            .navbar.active a {
+                display: block;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .channel-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .testimonial-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand">KIAN MEDIA</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+        <div>
+            <a href="#">Home</a>
+            <a href="kianmediacareers.html">Careers</a>
+            <a href="kianmediacareers.html">Apply Now</a>
+            <link rel="icon" href="images/kianmediafavicon.png" type="image/png">
+
+
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>We Make Viral Videos</h1>
+    </section>
+
+    <section class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"></iframe>
+    </section>
+
+    <section class="channels">
+        <h2>Our Channels</h2>
+        <div class="channel-grid">
+            <div class="channel-box">
+                <a href="https://www.youtube.com/@AceyOfficial">
+                    <img src="images/acey.jpg" alt="Channel 1" />
+                </a>
+            </div>
+            <div class="channel-box">
+                <a href="https://link-to-channel2.com">
+                    <img src="images/frenzy.jpg" alt="Channel 2" />
+                </a>
+            </div>
+            <div class="channel-box">
+                <a href="https://www.youtube.com/@BlitzyOfficial">
+                    <img src="images/blitzy.jpg" alt="Channel 3" />
+                </a>
+            </div>
+            <div class="channel-box">
+                <a href="https://www.youtube.com/@TwinxyYT">
+                    <img src="images/twinxy.jpg" alt="Channel 4" />
+                </a>
+            </div>
+            <div class="channel-box">
+                <a href="https://www.youtube.com/@LynxyOfficial">
+                    <img src="images/lynxy.jpg" alt="Channel 5" />
+                </a>
+            </div>
+            <div class="channel-box">
+                <a href="https://www.youtube.com/@SigmaCentralOfficial">
+                    <img src="images/sigma.jpg" alt="Channel 6" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="facts">
+        <h2>Our Interesting Facts</h2>
+        <div class="facts-grid">
+            <div class="fact">
+                <span>6+</span>
+                <p>Years of Experience</p>
+            </div>
+            <div class="fact">
+                <span>12+</span>
+                <p>Full-Time Employees</p>
+            </div>
+            <div class="fact">
+                <span>270+</span>
+                <p>Million Long Form Views</p>
+            </div>
+            <div class="fact">
+                <span>2,000+</span>
+                <p>Videos Produced</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What People Say About Us</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-box">
+                <p>"Kian Media helped us grow our brand rapidly! The quality of work is unbeatable!"</p>
+                <h3>John Doe</h3>
+                <p class="designation">CEO of XYZ Corp</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"The team at Kian Media is incredibly professional and creative. Highly recommend!"</p>
+                <h3>Jane Smith</h3>
+                <p class="designation">Marketing Head</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"Working with Kian Media has been an amazing experience. Their expertise is unmatched!"</p>
+                <h3>Mark Allen</h3>
+                <p class="designation">Founder of ABC Ltd</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="join-team">
+        <h2>Join Our Team</h2>
+        <button onclick="window.location.href='kianmediacareers.html'">Apply Now</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Kian Media. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.navbar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
